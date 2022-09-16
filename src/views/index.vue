@@ -1,6 +1,6 @@
 <template>
 <div style='display:flex'>
-<Menu style="width:30%" />
+<!-- <Menu style="width:30%" /> -->
 <div id="container">
   <div class="mapTheme">
        <label>地图主题:</label>
@@ -27,10 +27,10 @@ import AMapLoader from '@amap/amap-jsapi-loader';
 import { shallowRef } from '@vue/reactivity'
 import { useMessage } from 'naive-ui'
 import {handler} from '@/util/message.js'
-import Menu from '@/views/menu.vue'
+// import Menu from '@/views/menu.vue'
 export default defineComponent ({
   name: 'MapIndex',
-  components:{Menu},
+  // components:{Menu},
   setup(){
     const message = useMessage()
      window.$message = useMessage()

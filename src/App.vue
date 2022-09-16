@@ -4,16 +4,18 @@
     <router-link to="/getData">getData</router-link>
   </div> -->
     <n-message-provider>
-    <router-view/>
+ 
      <content />
+     <Layout/>
   </n-message-provider>
 </template>
 <script>
   import { defineComponent } from 'vue'
   //useMessage
-import { NMessageProvider, } from "naive-ui";
+// import { NMessageProvider, } from "naive-ui";
+import Layout from './views/layout'
 export default defineComponent({
-    components: {NMessageProvider },
+    components: {Layout },
     name:'App',
   setup() {
   },

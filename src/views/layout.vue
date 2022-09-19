@@ -1,47 +1,63 @@
 <template>
-  <n-space vertical>
-    <n-space> <n-switch v-model:value="inverted" /> inverted </n-space>
-    <n-layout>
-      <n-layout-header :inverted="inverted" bordered>
+  <n-space vertical >
+    <!-- <n-space> <n-switch v-model:value="inverted" /> inverted </n-space> -->
+    <n-layout  >
+      <!-- <n-layout-header :inverted="inverted" bordered>
         Header Header Header
         <n-menu mode="horizontal" :inverted="inverted" :options="menuOptions" />
-      </n-layout-header>
-      <n-layout has-sider>
+      </n-layout-header> -->
+      <n-layout has-sider style="max-height:calc(100vh - 25px);min-height: calc(100vh - 25px);">
         <n-layout-sider
           bordered
           show-trigger
           collapse-mode="width"
           :collapsed-width="64"
           :width="240"
+          :collapsed="collapsed"
           :native-scrollbar="false"
           :inverted="inverted"
+                  @collapse="collapsed = true"
+        @expand="collapsed = false"
+
         >
-        <!--           style="max-height: 320px" -->
+          <!-- style="max-height: calc(100% - 200px)" -->
           <n-menu
             :inverted="inverted"
             :collapsed-width="64"
+            :collapsed="collapsed"
             :collapsed-icon-size="22"
             :options="menuOptions"
+            value="go-back-home"
           />
         </n-layout-sider>
-        <!-- style="max-height: 320px" -->
-        <n-layout  />
-           <router-view/>
+        <n-layout has-sider style="height:100%"> 
+           <router-view  />
+        </n-layout>
       </n-layout>
       <n-layout-footer :inverted="inverted" bordered>
-        Footer Footer Footer
+        9374
       </n-layout-footer>
     </n-layout>
   </n-space>
 </template>
+<style>
+  /* .routerView{
+    max-height: calc(100vh - 25px);
+    height: calc(100vh - 25px);
+    min-height: calc(100vh - 25px);
+    overflow: auto;
+  } */
+</style>
 
 <script>
 import { h, defineComponent, ref } from "vue";
 import { NIcon } from "naive-ui";
+import { RouterLink } from 'vue-router'
 import {
   BookOutline as BookIcon,
   PersonOutline as PersonIcon,
-  WineOutline as WineIcon
+  WineOutline as WineIcon,
+  HomeOutline  as HomeIcon
 } from "@vicons/ionicons5";
 
 function renderIcon(icon) {
@@ -50,27 +66,23 @@ function renderIcon(icon) {
 
 const menuOptions = [
   {
-    label: "且听风吟",
-    key: "hear-the-wind-sing",
-    icon: renderIcon(BookIcon)
-  },
-  {
-    label: "1973年的弹珠玩具",
-    key: "pinball-1973",
-    icon: renderIcon(BookIcon),
-    disabled: true,
-    children: [
-      {
-        label: "鼠",
-        key: "rat"
-      }
-    ]
-  },
-  {
-    label: "寻羊冒险记",
-    key: "a-wild-sheep-chase",
-    disabled: true,
-    icon: renderIcon(BookIcon)
+    // label: "地图",
+    label:()=>
+       h(
+        RouterLink,
+        {
+          to: {
+            path:'/',
+            name: 'Index',
+            params: {
+              lang: 'zh-CN'
+            }
+          }
+        },
+        { default: () => '地图' }
+        ),
+    key: "go-back-home",
+    icon: renderIcon(HomeIcon)
   },
   {
     label: "舞，舞，舞",
@@ -128,7 +140,8 @@ export default defineComponent({
   setup() {
     return {
       inverted: ref(false),
-      menuOptions
+      menuOptions,
+      collapsed:ref(true)
     };
   }
 });

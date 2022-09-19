@@ -3,11 +3,14 @@
     <router-link to="/">Map</router-link> |
     <router-link to="/getData">getData</router-link>
   </div> -->
-    <n-message-provider>
- 
-     <content />
-     <Layout/>
-  </n-message-provider>
+        <n-message-provider>
+    <!-- <n-dialog-provider> -->
+        <Layout/>
+        <content/>
+    <!-- </n-dialog-provider> -->
+        <!-- <content></content> -->
+      </n-message-provider>
+
 </template>
 <script>
   import { defineComponent } from 'vue'
@@ -15,7 +18,7 @@
 // import { NMessageProvider, } from "naive-ui";
 import Layout from './views/layout'
 export default defineComponent({
-    components: {Layout },
+    components: {Layout,},
     name:'App',
   setup() {
   },
@@ -34,7 +37,7 @@ export default defineComponent({
 }
 
 #nav {
-  padding: 30px;
+  // padding: 30px;
 
   a {
     font-weight: bold;
